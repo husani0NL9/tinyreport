@@ -3,6 +3,7 @@ package com.bradrydzewski.tinyreport.birt;
 import com.bradrydzewski.tinyreport.model.DataConnection;
 import com.bradrydzewski.tinyreport.model.DataQuery;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
+import java.util.Map;
 import org.eclipse.birt._2005.design.DataSetType;
 import org.eclipse.birt._2005.design.DataSourceType;
 import org.eclipse.birt._2005.design.Report;
@@ -11,16 +12,19 @@ import org.eclipse.birt._2005.design.Report;
  *
  * @author Brad Rydzewski
  */
-public class ReportConverter {
+public class ReportConverter extends BaseFactory {
 
     public static ReportDefinition convert(Report report) {
 
         ReportDefinition reportDefinition = new ReportDefinition();
 
         //get report properties (ie title, description, author)
-        for (Object props : report.getPropertyOrExpressionOrXmlProperty()) {
-            //printProperties(o, "");
-        }
+        Map<String,String> props =getPropertyValueMap(
+                report.getPropertyOrExpressionOrXmlProperty());
+        //set report parameters
+        reportDefinition.setAuthor(props.get("author"));
+        reportDefinition.setName(props.get("title"));
+        reportDefinition.setCreatedBy(props.get("createdBy"));
 
         //DataConnections
         for (DataSourceType ds : report.getDataSources()
