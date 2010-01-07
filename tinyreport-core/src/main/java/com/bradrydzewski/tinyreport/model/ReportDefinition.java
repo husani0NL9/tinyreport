@@ -19,6 +19,7 @@ public class ReportDefinition {
     private Date updated = new Date();
     private String description;
     private String author;
+    private String createdBy;
     private Map<String, DataConnection> dataConnections = new HashMap<String, DataConnection>();
     private Map<String, ReportParameter> reportParameters = new HashMap<String, ReportParameter>();
     private Map<String, DataQuery> dataQueries = new HashMap<String, DataQuery>();
@@ -96,6 +97,12 @@ public class ReportDefinition {
     public void setAuthor(String author) {
         this.author = author;
     }
-    
-    
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 }

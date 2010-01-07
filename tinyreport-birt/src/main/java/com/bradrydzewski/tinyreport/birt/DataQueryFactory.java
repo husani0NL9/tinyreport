@@ -6,12 +6,10 @@ import com.bradrydzewski.tinyreport.model.DataType;
 import com.bradrydzewski.tinyreport.model.JdbcQuery;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.eclipse.birt._2005.design.DataSetType;
 import org.eclipse.birt._2005.design.DesignElement.Structure;
-import org.eclipse.birt._2005.design.DesignElement.XmlProperty;
 import org.eclipse.birt._2005.design.ExtendedDataSetType;
 import org.eclipse.birt._2005.design.ListPropertyType;
 import org.eclipse.birt._2005.design.PropertyValueType;
@@ -21,7 +19,7 @@ import org.eclipse.birt._2005.design.StructureType;
  *
  * @author Brad
  */
-public class DataQueryFactory {
+public class DataQueryFactory extends BaseFactory {
 
     public static DataQuery createDataConnection(DataSetType ds,
             ReportDefinition reportDefinition) {
@@ -65,33 +63,6 @@ public class DataQueryFactory {
         return query;
     }
 
-    protected static Map<String, String> getPropertyValueMap(List<Object> props) {
-
-        Map<String, String> map = new HashMap<String, String>();
-        String propName = null;
-        String propValue = null;
-
-        //iterate through each property
-        for (Object prop : props) {
-
-            if (prop instanceof PropertyValueType) {
-
-                propName = ((PropertyValueType) prop).getName();
-                propValue = ((PropertyValueType) prop).getValue();
-
-            } else if (prop instanceof XmlProperty) {
-
-                propName = ((XmlProperty) prop).getName();
-                propValue = ((XmlProperty) prop).getValue();
-
-            }
-            
-            //add the property to the map
-            map.put(propName, propValue);
-        }
-
-        return map;
-    }
 
     /**
      * A List of DataColumns in BIRT is represeted as a Structure entity,
