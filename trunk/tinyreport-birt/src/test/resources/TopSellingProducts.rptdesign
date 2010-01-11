@@ -45,14 +45,33 @@
     <property name="layoutPreference">auto layout</property>
     <parameters>
         <scalar-parameter name="NewParameter" id="59">
+            <property name="hidden">true</property>
+            <text-property name="helpText">some help text</text-property>
             <text-property name="promptText">Test text</text-property>
             <property name="valueType">static</property>
+            <property name="isRequired">true</property>
             <property name="dataType">string</property>
             <property name="distinct">true</property>
             <property name="paramType">simple</property>
             <property name="controlType">text-box</property>
             <structure name="format">
                 <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="NewParameter1123" id="60">
+            <text-property name="promptText">sdf afds asdf</text-property>
+            <property name="valueType">static</property>
+            <property name="isRequired">false</property>
+            <property name="dataType">date</property>
+            <property name="distinct">true</property>
+            <simple-property-list name="defaultValue">
+                <value type="constant">2009-10-10</value>
+            </simple-property-list>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Custom</property>
+                <property name="pattern">MMMM dd, yy</property>
             </structure>
         </scalar-parameter>
     </parameters>
