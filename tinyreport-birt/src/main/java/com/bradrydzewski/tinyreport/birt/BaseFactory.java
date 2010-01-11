@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import org.eclipse.birt._2005.design.DesignElement.XmlProperty;
 import org.eclipse.birt._2005.design.PropertyValueType;
+import org.eclipse.birt._2005.design.TextPropertyType;
 
 /**
  *
@@ -31,6 +32,9 @@ public abstract class BaseFactory {
                 propName = ((XmlProperty) prop).getName();
                 propValue = ((XmlProperty) prop).getValue();
 
+            } else if (prop instanceof TextPropertyType) {
+                propName = ((TextPropertyType) prop).getName();
+                propValue = ((TextPropertyType) prop).getValue();
             }
 
             //add the property to the map
