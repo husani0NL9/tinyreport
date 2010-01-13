@@ -41,9 +41,19 @@ public class ReportConverter {
             XPathFactory xpathFactory = XPathFactory.newInstance();
             XPath xpath = xpathFactory.newXPath();
 
+            //Get the report properties (ie name, author, etc)
+
             //Get the data connections
             reportDefinition.setDataConnections(
                     DataConnectionFactory.getDataConnections(xpath, doc));
+
+            //Get the data sets
+            reportDefinition.setDataQueries(
+                    DataQueryFactory.getDataQueries(xpath, doc));
+
+            //Get the report parameters
+
+            //Get the styles
 
 
         } catch (Exception ex) {

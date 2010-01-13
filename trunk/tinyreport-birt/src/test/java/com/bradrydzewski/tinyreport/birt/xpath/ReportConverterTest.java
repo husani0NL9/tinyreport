@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.bradrydzewski.tinyreport.birt.xpath;
 
 import com.bradrydzewski.tinyreport.model.ReportDefinition;

@@ -22,7 +22,7 @@ public abstract class DataQuery {
      * Columns in the data query result set.
      * @serial
      */
-    private List columns = new ArrayList();
+    private List<DataColumn> columns = new ArrayList<DataColumn>();
     /**
      * Input parameters used to build the data query.
      */
@@ -42,7 +42,7 @@ public abstract class DataQuery {
      * this data query.
      * @return list of data columns.
      */
-    public final List getColumns() {
+    public final List<DataColumn> getColumns() {
         return columns;
     }
 
@@ -50,7 +50,7 @@ public abstract class DataQuery {
      * Sets the list of {@link DataColumn} objects in the dataset.
      * @param cols List of data columns.
      */
-    public final void setColumns(final List cols) {
+    public final void setColumns(final List<DataColumn> cols) {
         this.columns = cols;
     }
 
