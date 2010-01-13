@@ -35,8 +35,7 @@ public class AppTest
 
 
 
-
-        File rptdesign = new File("src\\test\\resources\\TopSellingProducts.rptdesign");
+        File rptdesign = new File("src/test/resources/TopSellingProducts.rptdesign");
         //rptdesign = new File("src\\test\\resources\\ProductCatalog.rptdesign");
 
         try {

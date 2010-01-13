@@ -18,7 +18,7 @@ public class ReportConverterTest {
     @Test
     public void testConvert() {
 
-        File rptDesignFile = new File("src\\test\\resources\\TopSellingProducts.rptdesign");
+        File rptDesignFile = new File("src/test/resources/TopSellingProducts.rptdesign");
         ReportDefinition reportDefinition = null;
 
         try {
