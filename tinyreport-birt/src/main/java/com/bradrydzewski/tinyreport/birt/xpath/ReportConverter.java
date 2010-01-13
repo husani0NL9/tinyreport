@@ -1,11 +1,12 @@
 package com.bradrydzewski.tinyreport.birt.xpath;
 
-import com.bradrydzewski.tinyreport.model.DataConnection;
+import com.bradrydzewski.tinyreport.html.Style;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
-import java.util.List;
+import java.util.Collections;
+import java.util.Map;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
@@ -54,6 +55,10 @@ public class ReportConverter {
             //Get the report parameters
 
             //Get the styles
+            Map<String, Style> styles =
+                    StyleFactory.getStyles(xpath, doc);
+            for(Style style : styles.values())
+                reportDefinition.getPage().getStyles().add(style);
 
 
         } catch (Exception ex) {
