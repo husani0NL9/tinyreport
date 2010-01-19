@@ -1,6 +1,12 @@
 package com.bradrydzewski.tinyreport.util;
 
+import com.bradrydzewski.tinyreport.html.Style;
+import com.bradrydzewski.tinyreport.model.DataColumn;
+import com.bradrydzewski.tinyreport.model.JdbcConnection;
+import com.bradrydzewski.tinyreport.model.JdbcQuery;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
+import com.bradrydzewski.tinyreport.model.ReportParameterDateTextBox;
+import com.bradrydzewski.tinyreport.model.ReportParameterTextBox;
 import com.thoughtworks.xstream.XStream;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -10,11 +16,30 @@ import java.io.FileReader;
 /**
  * Utility methods to Serialize and De-Serialize reports to and from XML. 
  * All serialization is done using the XStream API.
+ *
+ * Alternate to XStream is the XMLEncoder class
+ * http://java.sun.com/j2se/1.4.2/docs/api/java/beans/XMLEncoder.html
  * @author Brad Rydzewski
  */
 public class ReportSerializationUtil {
 
+    private static XStream xstream = null;
     
+    static {
+        xstream = new XStream();
+        xstream.alias("report", ReportDefinition.class);
+        xstream.aliasField("connections", ReportDefinition.class, "dataConnections");
+        xstream.aliasField("parameters", ReportDefinition.class, "reportParameters");
+        xstream.aliasField("queries", ReportDefinition.class, "dataQueries");
+        xstream.alias("param-textbox", ReportParameterTextBox.class);
+        xstream.alias("param-datepicker", ReportParameterDateTextBox.class);
+        xstream.alias("conn-jdbc", JdbcConnection.class);
+        xstream.alias("query-jdbc", JdbcQuery.class);
+        xstream.alias("column", DataColumn.class);
+        xstream.alias("style", Style.class);
+    }
+
+
     /**
      * Serializes a {@link ReportDefinition} object to XML
      * @param reportDefinition ReportDefinition to serialize
@@ -22,7 +47,17 @@ public class ReportSerializationUtil {
      */
     public static String toXMLString(ReportDefinition reportDefinition){
         
-        XStream xstream = new XStream();
+//        XStream xstream = new XStream();
+//        xstream.alias("report", ReportDefinition.class);
+//        xstream.aliasField("connections", ReportDefinition.class, "dataConnections");
+//        xstream.aliasField("parameters", ReportDefinition.class, "reportParameters");
+//        xstream.aliasField("queries", ReportDefinition.class, "dataQueries");
+//        xstream.alias("param-textbox", ReportParameterTextBox.class);
+//        xstream.alias("param-datepicker", ReportParameterDateTextBox.class);
+//        xstream.alias("conn-jdbc", JdbcConnection.class);
+//        xstream.alias("query-jdbc", JdbcQuery.class);
+//        xstream.alias("column", DataColumn.class);
+//        xstream.alias("style", Style.class);
         String xml = xstream.toXML(reportDefinition);
         return xml;
     }
