@@ -18,6 +18,11 @@ public abstract class ReportParameter {
     private String prompt;
 
     /**
+     * More information or instructions given to the end user.
+     */
+    private String help;
+
+    /**
      * Value of input collected from end user.
      */
     private Object value;
@@ -89,5 +94,23 @@ public abstract class ReportParameter {
      */
     public void setRequired(boolean required) {
         this.required = required;
+    }
+
+    /**
+     * Gets additional information or instrctions to give to the
+     * end-user when requesting input.
+     * @return additional information about the parameter.
+     */
+    public String getHelp() {
+        return help;
+    }
+
+    /**
+     * Sets the additional information that should be provided
+     * to the user when presented with the input parameter.
+     * @param help Additional information about the parameter.
+     */
+    public void setHelp(String help) {
+        this.help = help;
     }
 }
