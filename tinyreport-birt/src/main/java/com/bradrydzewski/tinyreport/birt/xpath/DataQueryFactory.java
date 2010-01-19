@@ -79,7 +79,7 @@ public class DataQueryFactory {
         XPathExpression expr = xpath.compile("structure[@name='cachedMetaData']/list-property[@name='resultSet']/structure");
         Object result = expr.evaluate(node, XPathConstants.NODESET);
         NodeList nodes = (NodeList) result;
-        System.out.println("Columns: "+nodes.getLength());
+
             for (int i = 0; i < nodes.getLength(); i++) {
                 DataColumn col = getDataColumn(nodes.item(i), xpath);
                 columns.add(col);

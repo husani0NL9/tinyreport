@@ -53,6 +53,8 @@ public class ReportConverter {
                     DataQueryFactory.getDataQueries(xpath, doc));
 
             //Get the report parameters
+            reportDefinition.setReportParameters(
+                    ParameterFactory.getReportParameters(xpath, doc));
 
             //Get the styles
             Map<String, Style> styles =
