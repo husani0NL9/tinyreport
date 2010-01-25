@@ -21,8 +21,8 @@ public class ReportDefinition {
     private String author;
     private String createdBy;
     private Map<String, DataConnection> dataConnections = new HashMap<String, DataConnection>();
-    private Map<String, ReportParameter> reportParameters = new HashMap<String, ReportParameter>();
     private Map<String, DataQuery> dataQueries = new HashMap<String, DataQuery>();
+    private List<ParameterGroup> parameters = new ArrayList<ParameterGroup>();
     private Page htmlWebPage = new Page();
 
 
@@ -66,12 +66,12 @@ public class ReportDefinition {
         this.name = name;
     }
 
-    public Map<String, ReportParameter> getReportParameters() {
-        return reportParameters;
+    public List<ParameterGroup> getParameters() {
+        return parameters;
     }
 
-    public void setReportParameters(Map<String, ReportParameter> reportParameters) {
-        this.reportParameters = reportParameters;
+    public void setParameters(List<ParameterGroup> parameters) {
+        this.parameters = parameters;
     }
 
     public Date getUpdated() {
