@@ -6,8 +6,8 @@
 package com.bradrydzewski.tinyreport;
 
 import com.bradrydzewski.tinyreport.jdbc.DataSet;
+import com.bradrydzewski.tinyreport.model.Parameter;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
-import java.util.Dictionary;
 import java.util.Map;
 import javax.script.ScriptEngine;
 import org.apache.ecs.Document;
@@ -24,6 +24,7 @@ public class ReportBuilderArgs {
     private Object[] currentDataRow;
     private ScriptEngine scriptEngine;
     private Map<String,DataSet> results;
+    private Map<String, Parameter> parameters;
 
     public ReportBuilderArgs(ReportDefinition reportDefinition,
             Map<String, DataSet> results,
@@ -90,4 +91,9 @@ public class ReportBuilderArgs {
     public ScriptEngine getScriptEngine() {
         return scriptEngine;
     }
+
+    public Map<String, Parameter> getParameters() {
+        return parameters;
+    }
+
 }

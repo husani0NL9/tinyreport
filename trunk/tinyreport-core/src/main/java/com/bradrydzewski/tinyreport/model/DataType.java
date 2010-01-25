@@ -25,5 +25,9 @@ public enum DataType {
     /**
      * Maps to java.lang.Float.
      */
-    FLOAT
+    FLOAT,
+    /**
+     * Maps to java.lang.Boolean.
+     */
+    BOOLEAN
 }

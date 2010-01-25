@@ -4,7 +4,7 @@ package com.bradrydzewski.tinyreport.model;
  * Input parameter used to build a report.
  * @author Brad Rydzewski
  */
-public abstract class ReportParameter {
+public abstract class Parameter {
 
     /**
      * Name of the report parameter.

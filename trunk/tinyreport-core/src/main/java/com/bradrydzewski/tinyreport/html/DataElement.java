@@ -112,7 +112,7 @@ public class DataElement extends Element {
         try {
             //add arguments to the script engine for script access
             //args.getScriptEngine().put("row", args.getCurrentDataRow());
-            args.getScriptEngine().put("params", args.getReportDefinition().getReportParameters());
+            args.getScriptEngine().put("params", args.getParameters());
             args.getScriptEngine().put("reportDefinition", args.getReportDefinition());
             args.getScriptEngine().put("this", this);
             //run the script and get the value

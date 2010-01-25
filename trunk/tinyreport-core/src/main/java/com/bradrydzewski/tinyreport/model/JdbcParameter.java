@@ -27,7 +27,7 @@ public class JdbcParameter {
      * Report parameter bound to the jdbc parameter.
      * @Serial
      */
-    private ReportParameter reportParameter;
+    private Parameter reportParameter;
     /**
      * Report parameter name.
      * @Serial
@@ -37,7 +37,7 @@ public class JdbcParameter {
     public JdbcParameter() {
     }
 
-    public JdbcParameter(int position, DataType type, ReportParameter reportParameter) {
+    public JdbcParameter(int position, DataType type, Parameter reportParameter) {
         this.position = position;
         this.type = type;
         this.reportParameter = reportParameter;
@@ -48,7 +48,7 @@ public class JdbcParameter {
      * jdbc report paramter.
      * @return report paramter bound to this jdbc parameter.
      */
-    public final ReportParameter getReportParameter() {
+    public final Parameter getReportParameter() {
         return reportParameter;
     }
 
@@ -60,7 +60,7 @@ public class JdbcParameter {
      * jdbc prepared statements.
      * @param param report parameter bound to this jdbc parameter.
      */
-    public final void setReportParameter(final ReportParameter param) {
+    public final void setReportParameter(final Parameter param) {
         this.reportParameter = param;
     }
 

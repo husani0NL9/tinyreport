@@ -8,7 +8,7 @@ import java.util.Map;
  * requested from the end-user in the form of a items box (dropdown).
  * @author Brad Rydzewski
  */
-public class ReportParameterDropdown extends ReportParameter {
+public class ParameterDropdown extends Parameter {
 
     /**
      * List of dropdown items.
@@ -20,6 +20,24 @@ public class ReportParameterDropdown extends ReportParameter {
      * @serial
      */
     private int displaySize = 1;
+
+    /**
+     * Dataset bound to Report Parameter.
+     * @serial
+     */
+    private String dataSource;
+
+    /**
+     * Dataset column bound to the listobx value.
+     * @serial
+     */
+    private String valueColumn;
+
+    /**
+     * Dataset column bound to the listbox display.
+     * @serial
+     */
+    private String displayColumn;
 
     /**
      * Gets the items of dropdown items. The key in the map is the dropdown

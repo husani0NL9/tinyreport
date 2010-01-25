@@ -9,18 +9,18 @@ import java.util.Date;
  * requested from the end-user in the form of a text box (free-form).
  * @author Brad Rydzewski
  */
-public class ReportParameterDateTextBox extends ReportParameter {
+public class ParameterDateTextBox extends Parameter {
 
-    public ReportParameterDateTextBox() {
+    public ParameterDateTextBox() {
     }
 
-    public ReportParameterDateTextBox(String nm, String prmpt) {
+    public ParameterDateTextBox(String nm, String prmpt) {
         this.setName(nm);
         this.setPrompt(prmpt);
         this.setValue(nm);
     }
 
-    public ReportParameterDateTextBox(String nm, String prmpt, Object val) {
+    public ParameterDateTextBox(String nm, String prmpt, Object val) {
         this.setName(nm);
         this.setPrompt(prmpt);
         this.setValue(val);
