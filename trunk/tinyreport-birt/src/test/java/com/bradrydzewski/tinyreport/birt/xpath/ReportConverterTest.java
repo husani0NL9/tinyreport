@@ -19,7 +19,7 @@ public class ReportConverterTest {
     public void testConvert_InputStream() {
 
         try {
-            File rptdesign = new File("src/test/resources/TopSellingProducts.rptdesign");
+            File rptdesign = new File("src/test/resources/KitchenSink.rptdesign");
             ReportDefinition rd = ReportConverter.convert(new FileInputStream(rptdesign));
 
             String reportDefStr = ReportSerializationUtil.toXMLString(rd);

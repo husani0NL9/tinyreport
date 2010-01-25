@@ -3,7 +3,7 @@ package com.bradrydzewski.tinyreport.birt;
 import com.bradrydzewski.tinyreport.model.DataConnection;
 import com.bradrydzewski.tinyreport.model.DataQuery;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
-import com.bradrydzewski.tinyreport.model.ReportParameter;
+import com.bradrydzewski.tinyreport.model.Parameter;
 import java.util.Map;
 import org.eclipse.birt._2005.design.DataSetType;
 import org.eclipse.birt._2005.design.DataSourceType;
@@ -52,10 +52,10 @@ public class ReportConverter extends BaseFactory {
         for (ReportElementType elem : report.getParameters()
                 .getParameterGroupOrScalarParameterOrFilterParameter()) {
 
-            ReportParameter param = ParameterFactory
+            Parameter param = ParameterFactory
                     .createParameter(elem, reportDefinition);
 
-            reportDefinition.getReportParameters().put(param.getName(), param);
+            //reportDefinition.getReportParameters().put(param.getName(), param);
         }
 
         return reportDefinition;

@@ -1,9 +1,9 @@
 package com.bradrydzewski.tinyreport.birt;
 
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
-import com.bradrydzewski.tinyreport.model.ReportParameter;
-import com.bradrydzewski.tinyreport.model.ReportParameterDateTextBox;
-import com.bradrydzewski.tinyreport.model.ReportParameterTextBox;
+import com.bradrydzewski.tinyreport.model.Parameter;
+import com.bradrydzewski.tinyreport.model.ParameterDateTextBox;
+import com.bradrydzewski.tinyreport.model.ParameterTextBox;
 import java.util.Map;
 import org.eclipse.birt._2005.design.ReportElementType;
 import org.eclipse.birt._2005.design.ScalarParamType;
@@ -14,10 +14,10 @@ import org.eclipse.birt._2005.design.ScalarParamType;
  */
 public class ParameterFactory extends BaseFactory {
 
-    public static ReportParameter createParameter(ReportElementType elem,
+    public static Parameter createParameter(ReportElementType elem,
             ReportDefinition reportDefinition) {
 
-        ReportParameter reportParameter = null;
+        Parameter reportParameter = null;
 
         if(elem==null)
             return null;
@@ -47,13 +47,13 @@ public class ParameterFactory extends BaseFactory {
         return reportParameter;
     }
 
-    public static ReportParameter createTextParameter(Map<String, String> props) {
-        ReportParameterTextBox textParam = new ReportParameterTextBox();
+    public static Parameter createTextParameter(Map<String, String> props) {
+        ParameterTextBox textParam = new ParameterTextBox();
         return textParam;
     }
 
-    public static ReportParameter createDateParameter(Map<String, String> props) {
-        ReportParameterDateTextBox dateParam = new ReportParameterDateTextBox();
+    public static Parameter createDateParameter(Map<String, String> props) {
+        ParameterDateTextBox dateParam = new ParameterDateTextBox();
 
         return dateParam;
     }
