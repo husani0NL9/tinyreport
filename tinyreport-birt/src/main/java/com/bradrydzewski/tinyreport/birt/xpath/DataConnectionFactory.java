@@ -35,7 +35,7 @@ public class DataConnectionFactory {
         Map<String, DataConnection> connMap = new HashMap<String, DataConnection>();
 
         try {
-            XPathExpression expr = xpath.compile("//oda-data-source");// +
+            XPathExpression expr = xpath.compile("report/data-sources/oda-data-source");// +
                     //"[@extensionID='org.apache.derby.jdbc.ClientDriver']");
             Object result = expr.evaluate(doc, XPathConstants.NODESET);
             NodeList nodes = (NodeList) result;
@@ -58,20 +58,20 @@ public class DataConnectionFactory {
         JdbcConnection conn = new JdbcConnection();
         conn.setName(node.getAttributes().getNamedItem("name").getNodeValue());
 
-        XPathExpression expr = xpath.compile("//property[@name='odaDriverClass']");
+        XPathExpression expr = xpath.compile("property[@name='odaDriverClass']");
         String driverClass = expr.evaluate(node, XPathConstants.STRING).toString();
 
-        expr = xpath.compile("//property[@name='odaUser']");
+        expr = xpath.compile("property[@name='odaUser']");
         String user = expr.evaluate(node, XPathConstants.STRING).toString();
 
-        expr = xpath.compile("//encrypted-property[@name='odaPassword']");
+        expr = xpath.compile("encrypted-property[@name='odaPassword']");
         String password = expr.evaluate(node, XPathConstants.STRING).toString();
         password = new String(new sun.misc.BASE64Decoder().decodeBuffer(password));
 
-        expr = xpath.compile("//property[@name='odaURL']");
+        expr = xpath.compile("property[@name='odaURL']");
         String url = expr.evaluate(node, XPathConstants.STRING).toString();
 
-        expr = xpath.compile("//property[@name='odaJndiName']");
+        expr = xpath.compile("property[@name='odaJndiName']");
         String jndi = expr.evaluate(node, XPathConstants.STRING).toString();
 
         conn.setDatabaseUser(user);

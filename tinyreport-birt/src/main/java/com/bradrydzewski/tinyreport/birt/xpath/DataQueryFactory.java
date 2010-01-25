@@ -29,7 +29,7 @@ public class DataQueryFactory {
         Map<String, DataQuery> connMap = new HashMap<String, DataQuery>();
 
         try {
-            XPathExpression expr = xpath.compile("//oda-data-set");// +
+            XPathExpression expr = xpath.compile("report/data-sets/oda-data-set");// +
             //"[@extensionID='org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet']");
             Object result = expr.evaluate(doc, XPathConstants.NODESET);
             NodeList nodes = (NodeList) result;
