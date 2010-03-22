@@ -11,7 +11,7 @@ import java.util.ArrayList;
  */
 public class PageBuilder {
 
-    public static void getPage(XMLDataObject xml) {
+    public Page getPage(XMLDataObject xml) {
 
         Page page = new Page();
         page.setChildElements(new ArrayList<Element>());
@@ -24,6 +24,8 @@ public class PageBuilder {
                 page.getChildElements().add(element);
             }
         }
+
+        return page;
     }
 
 }

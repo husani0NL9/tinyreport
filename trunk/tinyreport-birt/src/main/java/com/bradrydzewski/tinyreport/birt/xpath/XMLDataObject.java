@@ -119,12 +119,24 @@ public class XMLDataObject {
         return node.getNodeValue();
     }
 
+    public XMLDataObject getXMLDataObject(String path) {
+        try {
+
+            XPathExpression expr = xpath.compile(path);
+            Object result = expr.evaluate(node, XPathConstants.NODE);
+            return new XMLDataObject(xpath, (Node)result);
+
+        } catch(XPathExpressionException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
     public List<XMLDataObject> getChildNodes() {
 
         List<XMLDataObject> dataObjectList =
                 new ArrayList<XMLDataObject>();
 
-        NodeList nodes = (NodeList) node.getChildNodes();
+        NodeList nodes = node.getChildNodes();
 
         for (int i = 0; i < nodes.getLength(); i++) {
             XMLDataObject childDataObject =

@@ -1,8 +1,6 @@
 package com.bradrydzewski.tinyreport.birt.html;
 
 import com.bradrydzewski.tinyreport.birt.xpath.XMLDataObject;
-import com.bradrydzewski.tinyreport.html.Element;
-import org.apache.ecs.xhtml.object;
 
 /**
  *
