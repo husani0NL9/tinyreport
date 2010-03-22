@@ -6,9 +6,7 @@ import com.bradrydzewski.tinyreport.model.DataType;
 import com.bradrydzewski.tinyreport.model.JdbcQuery;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathException;
@@ -23,10 +21,10 @@ import org.w3c.dom.NodeList;
  */
 public class DataQueryFactory {
 
-    public static Map<String, DataQuery> getDataQueries(
+    public static List<DataQuery> getDataQueries(
             XPath xpath, Document doc) {
 
-        Map<String, DataQuery> connMap = new HashMap<String, DataQuery>();
+        List<DataQuery> queries = new ArrayList<DataQuery>();
 
         try {
             XPathExpression expr = xpath.compile("report/data-sets/oda-data-set");// +
@@ -36,14 +34,14 @@ public class DataQueryFactory {
 
             for (int i = 0; i < nodes.getLength(); i++) {
                 DataQuery query = getJdbcQuery(nodes.item(i), xpath);
-                connMap.put(query.getName(), query);
+                queries.add(query);
             }
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
 
-        return connMap;
+        return queries;
     }
 
     protected static JdbcQuery getJdbcQuery(Node node, XPath xpath)

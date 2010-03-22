@@ -47,6 +47,11 @@ public class ParameterFactory {
             defaultGroup.setName("DEFAULT");
             XPathExpression expr = xpath.compile("report/parameters");
             Object result = expr.evaluate(doc, XPathConstants.NODE);
+
+            //exit out if no results. avoids null pointer
+            if(result==null)
+                return groups;
+
             defaultGroup.setParameters(getParameters(xpath, (Node)result));
             groups.add(defaultGroup);
             

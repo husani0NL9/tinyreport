@@ -33,16 +33,17 @@ public class ReportConverter {
         ReportDefinition reportDefinition = new ReportDefinition();
 
         try {
-            //http://www.ibm.com/developerworks/library/x-javaxpathapi.html
-            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-            //factory.setNamespaceAware(true); // never forget this!
-            DocumentBuilder builder = factory.newDocumentBuilder();
-            Document doc = builder.parse(input);
-            
-            XPathFactory xpathFactory = XPathFactory.newInstance();
-            XPath xpath = xpathFactory.newXPath();
 
-            //Get the report properties (ie name, author, etc)
+            //Creating an XMLDataOjbect. This is based loosely on
+            // the SDO framework, to encapulate all of the XPath logic.
+            //This is not currently used in all the Factory classes,
+            // but will be used going forward
+            XMLDataObject xmlDataObject = XMLDataObject.createFromStream(input);
+
+            //We set these values for factories not yet using the
+            // XMLDataObject
+            Document doc = (Document)xmlDataObject.getNode();
+            XPath xpath = xmlDataObject.getXPath();
 
             //Get the data connections
             reportDefinition.setDataConnections(
@@ -58,10 +59,11 @@ public class ReportConverter {
 
             //Get the styles
             Map<String, Style> styles =
-                    StyleFactory.getStyles(xpath, doc);
+                    StyleFactory.getStyles(xmlDataObject);
             for(Style style : styles.values())
                 reportDefinition.getPage().getStyles().add(style);
 
+            
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);

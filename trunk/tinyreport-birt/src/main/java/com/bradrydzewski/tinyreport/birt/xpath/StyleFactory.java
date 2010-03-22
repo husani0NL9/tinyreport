@@ -3,14 +3,9 @@ package com.bradrydzewski.tinyreport.birt.xpath;
 import com.bradrydzewski.tinyreport.html.Style;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
-import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathException;
-import javax.xml.xpath.XPathExpression;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 /**
  *
@@ -27,20 +22,18 @@ public class StyleFactory {
 
 
     public static Map<String, Style> getStyles(
-            XPath xpath, Document doc) {
+            XMLDataObject xml) {
 
         Map<String, Style> styleMap = new HashMap<String, Style>();
 
         try {
-            XPathExpression expr = xpath.compile("report/styles/style");// +
-            Object result = expr.evaluate(doc, XPathConstants.NODESET);
-            NodeList nodes = (NodeList) result;
+            List<XMLDataObject> objects =
+                    xml.getList("report/styles/style");
 
-            for (int i = 0; i < nodes.getLength(); i++) {
-                Style style = getStyle(nodes.item(i), xpath);
+            for(XMLDataObject object : objects) {
+                Style style = getStyle(object);
                 styleMap.put(style.getName(), style);
             }
-
         } catch (Exception ex) {
             throw new RuntimeException(ex);
         }
@@ -48,30 +41,31 @@ public class StyleFactory {
         return styleMap;
     }
 
-    protected static Style getStyle(Node node, XPath xpath)
+    protected static Style getStyle(XMLDataObject xml)
             throws XPathException, IOException {
 
         Style style = new Style();
-        style.setName(node.getAttributes().getNamedItem("name").getNodeValue());
-
-        XPathExpression expr = xpath.compile("property");
-        Object result = expr.evaluate(node, XPathConstants.NODESET);
-        NodeList nodes = (NodeList) result;
+        style.setName(xml.getString("@name"));
 
         //Style string
         StringBuilder styleString = new StringBuilder();
 
-        for (int i = 0; i < nodes.getLength(); i++) {
-            Node propertyNode = nodes.item(i);
-            String value = propertyNode.getTextContent();
-            String name = propertyNode.getAttributes().getNamedItem("name").getTextContent();
-            
+        //Get the list of properties
+        List<XMLDataObject> objects = xml.getList("property");
+
+        //Loop through properties to get the style
+        for(XMLDataObject object : objects) {
+
+            String value = object.getTextContent();
+            String name = object.getString("@name");
+
             if(STYLE_TO_CSS.containsKey(name))
                 name = STYLE_TO_CSS.get(name);
 
             styleString.append(name).append(":").append(value);
         }
 
+        //Set the css style string
         style.setValue(styleString.toString());
 
         return style;
