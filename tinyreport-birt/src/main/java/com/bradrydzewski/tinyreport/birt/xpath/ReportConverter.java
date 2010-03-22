@@ -1,16 +1,14 @@
 package com.bradrydzewski.tinyreport.birt.xpath;
 
+import com.bradrydzewski.tinyreport.birt.html.ElementBuilder;
+import com.bradrydzewski.tinyreport.birt.html.ElementBuilderFactory;
 import com.bradrydzewski.tinyreport.html.Style;
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
-import java.util.Collections;
 import java.util.Map;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.xpath.XPath;
-import javax.xml.xpath.XPathFactory;
 import org.w3c.dom.Document;
 
 /**
@@ -64,6 +62,17 @@ public class ReportConverter {
                 reportDefinition.getPage().getStyles().add(style);
 
             
+            XMLDataObject bodyObject =
+                    xmlDataObject.getXMLDataObject("report/body");
+
+            for(XMLDataObject elementObject : bodyObject.getChildNodes()) {
+                ElementBuilder builder =
+                        ElementBuilderFactory.get().getBuilder(elementObject);
+                if(builder!=null) {
+                    reportDefinition.getPage().addChildElement(
+                            builder.getElement(elementObject));
+                }
+            }
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);

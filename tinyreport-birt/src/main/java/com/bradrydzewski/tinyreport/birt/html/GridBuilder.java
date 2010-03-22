@@ -5,6 +5,7 @@ import com.bradrydzewski.tinyreport.html.Element;
 import com.bradrydzewski.tinyreport.html.Grid;
 import com.bradrydzewski.tinyreport.html.GridCell;
 import com.bradrydzewski.tinyreport.html.GridRow;
+import com.bradrydzewski.tinyreport.html.Text;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ public class GridBuilder extends ElementBuilder {
         grid.setRows(new ArrayList<GridRow>());
 
         List<XMLDataObject> rows = xml.getList("row");
+        
         for(XMLDataObject row : rows) {
             GridRow gridRow = getGridRow(row);
             grid.addRow(gridRow);
@@ -42,7 +44,7 @@ public class GridBuilder extends ElementBuilder {
 
     public GridCell getGridCell(XMLDataObject xml) {
         GridCell cell = new GridCell();
-        
+        cell.setChild(new Text());
         return cell;
     }
 }
