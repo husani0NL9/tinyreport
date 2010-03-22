@@ -3,8 +3,8 @@ package com.bradrydzewski.tinyreport.birt.xpath;
 import com.bradrydzewski.tinyreport.model.DataConnection;
 import com.bradrydzewski.tinyreport.model.JdbcConnection;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathException;
@@ -29,10 +29,10 @@ import org.w3c.dom.NodeList;
  */
 public class DataConnectionFactory {
 
-    public static Map<String, DataConnection> getDataConnections(
+    public static List<DataConnection> getDataConnections(
             XPath xpath, Document doc) {
 
-        Map<String, DataConnection> connMap = new HashMap<String, DataConnection>();
+        List<DataConnection> connMap = new ArrayList<DataConnection>();
 
         try {
             XPathExpression expr = xpath.compile("report/data-sources/oda-data-source");// +
@@ -42,7 +42,7 @@ public class DataConnectionFactory {
 
             for (int i = 0; i < nodes.getLength(); i++) {
                 DataConnection conn = getJdbcConnection(nodes.item(i), xpath);
-                connMap.put(conn.getName(), conn);
+                connMap.add(conn);
             }
 
         } catch (Exception ex) {
