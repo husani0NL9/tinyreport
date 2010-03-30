@@ -61,7 +61,7 @@ public class ReportConverter {
             for(Style style : styles.values())
                 reportDefinition.getPage().getStyles().add(style);
 
-            
+
             XMLDataObject bodyObject =
                     xmlDataObject.getXMLDataObject("report/body");
 
@@ -73,6 +73,12 @@ public class ReportConverter {
                             builder.getElement(elementObject));
                 }
             }
+
+            //Creates a list of report properties. There are mostly
+            // used to hold sets of images
+            Map<String,String> properties = PropertyFactory.getProperties(
+                    xmlDataObject.getList("report/list-property[@name='images']/structure"));
+            reportDefinition.setProperties(properties);
 
         } catch (Exception ex) {
             throw new RuntimeException(ex);

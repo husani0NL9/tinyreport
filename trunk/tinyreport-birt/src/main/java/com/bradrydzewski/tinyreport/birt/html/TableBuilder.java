@@ -2,32 +2,37 @@ package com.bradrydzewski.tinyreport.birt.html;
 
 import com.bradrydzewski.tinyreport.birt.xpath.XMLDataObject;
 import com.bradrydzewski.tinyreport.html.Element;
-import com.bradrydzewski.tinyreport.html.Grid;
 import com.bradrydzewski.tinyreport.html.GridCell;
 import com.bradrydzewski.tinyreport.html.GridRow;
-import com.bradrydzewski.tinyreport.html.Text;
+import com.bradrydzewski.tinyreport.html.Table;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author Brad Rydzewski
+ * @author brad
  */
-public class GridBuilder extends ElementBuilder {
+public class TableBuilder extends ElementBuilder {
 
+    @Override
     public Element getElement(XMLDataObject xml) {
 
-        Grid grid = new Grid();
-        grid.setRows(new ArrayList<GridRow>());
+        Table table = new Table();
 
-        List<XMLDataObject> rows = xml.getList("row");
-        
-        for(XMLDataObject row : rows) {
-            GridRow gridRow = getGridRow(row);
-            grid.addRow(gridRow);
+        String dataSet = xml.getString("property[@name='dataSet']");
+        table.setDataQuery(dataSet);
+
+        List<XMLDataObject> headerRows = xml.getList("header/row");
+        for(XMLDataObject row : headerRows) {
+            table.getHeaderRows().add(getGridRow(row));
         }
 
-        return grid;
+        List<XMLDataObject> bodyRows = xml.getList("detail/row");
+        for(XMLDataObject row : bodyRows) {
+            table.getRows().add(getGridRow(row));
+        }
+
+        return table;
     }
 
     public GridRow getGridRow(XMLDataObject xml) {
