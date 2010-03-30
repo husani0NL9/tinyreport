@@ -67,8 +67,8 @@ public class GridRow extends Element {
         tr.setPrettyPrint(true);
 
         //add the style
-        if(style!=null)
-            tr.setClass(style.getName());
+        if(styleName!=null)
+            tr.setClass(styleName);
 
         //build rows (<tr>)
         for(GridCell row : cells){

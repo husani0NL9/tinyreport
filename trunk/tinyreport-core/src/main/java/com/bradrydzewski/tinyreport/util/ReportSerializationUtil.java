@@ -38,6 +38,14 @@ public class ReportSerializationUtil {
         xstream.alias("query-jdbc", JdbcQuery.class);
         xstream.alias("column", DataColumn.class);
         xstream.alias("style", Style.class);
+
+        xstream.alias("table",com.bradrydzewski.tinyreport.html.Table.class);
+        xstream.alias("grid",com.bradrydzewski.tinyreport.html.Grid.class);
+        xstream.alias("grid-row",com.bradrydzewski.tinyreport.html.GridRow.class);
+        xstream.alias("grid-cell",com.bradrydzewski.tinyreport.html.GridCell.class);
+        xstream.alias("text",com.bradrydzewski.tinyreport.html.Text.class);
+        xstream.alias("data", com.bradrydzewski.tinyreport.html.DataElement.class);
+        xstream.alias("image",com.bradrydzewski.tinyreport.html.Image.class);
     }
 
 

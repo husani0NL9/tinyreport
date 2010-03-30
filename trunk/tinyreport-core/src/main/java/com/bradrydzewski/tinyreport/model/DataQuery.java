@@ -4,6 +4,7 @@ import com.bradrydzewski.tinyreport.filter.Filter;
 import com.bradrydzewski.tinyreport.jdbc.DataSet;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Abstract class representing a query of any data source, such as database,
@@ -129,7 +130,9 @@ public abstract class DataQuery {
      * ReportDefinition's DataSet map.
      * @param dataConnection DataConnection used to connect to the data source
      *                          and execute the query
+     * @param params List of parameters provided as input.
      * @return DataSet contain query results.
      */
-    public abstract DataSet execute(DataConnection dataConnection);
+    public abstract DataSet execute(DataConnection dataConnection,
+            Map<String, Parameter> params);
 }

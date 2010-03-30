@@ -27,7 +27,7 @@ public class JdbcParameter {
      * Report parameter bound to the jdbc parameter.
      * @Serial
      */
-    private Parameter reportParameter;
+    private String reportParameter;
     /**
      * Report parameter name.
      * @Serial
@@ -37,7 +37,7 @@ public class JdbcParameter {
     public JdbcParameter() {
     }
 
-    public JdbcParameter(int position, DataType type, Parameter reportParameter) {
+    public JdbcParameter(int position, DataType type, String reportParameter) {
         this.position = position;
         this.type = type;
         this.reportParameter = reportParameter;
@@ -48,7 +48,7 @@ public class JdbcParameter {
      * jdbc report paramter.
      * @return report paramter bound to this jdbc parameter.
      */
-    public final Parameter getReportParameter() {
+    public final String getReportParameter() {
         return reportParameter;
     }
 
@@ -60,18 +60,18 @@ public class JdbcParameter {
      * jdbc prepared statements.
      * @param param report parameter bound to this jdbc parameter.
      */
-    public final void setReportParameter(final Parameter param) {
+    public final void setReportParameter(final String param) {
         this.reportParameter = param;
     }
 
-    /**
-     * Gets the value of the jdbc parameter, based on the value provided by
-     * the end user.
-     * @return parameter value.
-     */
-    public final Object getValue() {
-        return reportParameter.getValue();
-    }
+//    /**
+//     * Gets the value of the jdbc parameter, based on the value provided by
+//     * the end user.
+//     * @return parameter value.
+//     */
+//    public final Object getValue() {
+//        return reportParameter.getValue();
+//    }
 
     /**
      * Gets the syntax used to format a string, for use with the

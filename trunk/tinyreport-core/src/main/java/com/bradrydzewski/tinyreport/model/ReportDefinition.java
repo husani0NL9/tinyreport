@@ -20,11 +20,11 @@ public class ReportDefinition {
     private String description;
     private String author;
     private String createdBy;
-    private Map<String, DataConnection> dataConnections = new HashMap<String, DataConnection>();
-    private Map<String, DataQuery> dataQueries = new HashMap<String, DataQuery>();
+    private List<DataConnection> dataConnections = new ArrayList<DataConnection>();
+    private List<DataQuery> dataQueries = new ArrayList<DataQuery>();
     private List<ParameterGroup> parameters = new ArrayList<ParameterGroup>();
     private Page htmlWebPage = new Page();
-
+    private Map<String,String> properties = new HashMap<String,String>();
 
     public Page getPage() {
         return htmlWebPage;
@@ -42,11 +42,11 @@ public class ReportDefinition {
         this.created = created;
     }
 
-    public Map<String, DataConnection> getDataConnections() {
+    public List<DataConnection> getDataConnections() {
         return dataConnections;
     }
 
-    public void setDataConnections(Map<String, DataConnection> dataConnections) {
+    public void setDataConnections(List<DataConnection> dataConnections) {
         this.dataConnections = dataConnections;
     }
 
@@ -82,11 +82,11 @@ public class ReportDefinition {
         this.updated = updated;
     }
 
-    public Map<String, DataQuery> getDataQueries() {
+    public List<DataQuery> getDataQueries() {
         return dataQueries;
     }
 
-    public void setDataQueries(Map<String, DataQuery> dataQueries) {
+    public void setDataQueries(List<DataQuery> dataQueries) {
         this.dataQueries = dataQueries;
     }
 
@@ -104,5 +104,13 @@ public class ReportDefinition {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public Map<String, String> getProperties() {
+        return properties;
+    }
+
+    public void setProperties(Map<String, String> properties) {
+        this.properties = properties;
     }
 }

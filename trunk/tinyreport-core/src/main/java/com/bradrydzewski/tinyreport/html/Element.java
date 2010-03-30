@@ -10,7 +10,8 @@ public abstract class Element {
 
     private String id;
     private String name;
-    protected Style style;
+    protected String styleName;
+    private String styleString;
 
     public String getId() {
         return id;
@@ -28,12 +29,20 @@ public abstract class Element {
         this.name = name;
     }
 
-    public Style getStyle() {
-        return style;
+    public String getStyleName() {
+        return styleName;
     }
 
-    public void setStyle(Style style) {
-        this.style = style;
+    public void setStyleName(String style) {
+        this.styleName = style;
+    }
+
+    public String getStyleString() {
+        return styleString;
+    }
+
+    public void setStyleString(String styleString) {
+        this.styleString = styleString;
     }
 
     public abstract void build(org.apache.ecs.Element parent,

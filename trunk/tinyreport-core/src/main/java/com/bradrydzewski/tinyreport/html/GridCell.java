@@ -20,9 +20,9 @@ public class GridCell extends Element {
     public GridCell(Element child) {
         this(child,0,0);
     }
-    public GridCell(Element child, Style style) {
+    public GridCell(Element child, String style) {
         setChild(child);
-        setStyle(style);
+        setStyleName(style);
     }
     public GridCell(Element child, int cSpan, int rSpan) {
         setChild(child);
@@ -70,8 +70,8 @@ public class GridCell extends Element {
         td.setPrettyPrint(true);
 
         //add the style
-        if(style!=null)
-            td.setClass(style.getName());
+        if(styleName!=null)
+            td.setClass(styleName);
 
         //build the child element
         child.build(td, args);

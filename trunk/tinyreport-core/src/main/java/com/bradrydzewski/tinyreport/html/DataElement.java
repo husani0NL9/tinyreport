@@ -17,6 +17,7 @@ import org.apache.ecs.xhtml.div;
 public class DataElement extends Element {
 
     private String script;
+    private String column;
     private DataColumn value;
     private boolean dynamic = false;
     private String numberFormat = "";
@@ -74,6 +75,14 @@ public class DataElement extends Element {
         this.numberFormat = numberFormat;
     }
 
+    public String getColumn() {
+        return column;
+    }
+
+    public void setColumn(String column) {
+        this.column = column;
+    }
+
     @Override
     public void build(org.apache.ecs.Element parent, ReportBuilderArgs args) {
 
@@ -85,8 +94,8 @@ public class DataElement extends Element {
         StringElement innerText = null;
 
         //set the style, if not null
-        if (style != null) {
-            div.setStyle(style.getValue());
+        if (styleName != null) {
+            div.setStyle(styleName);
         }
 
         //if dynamic text, need to run script

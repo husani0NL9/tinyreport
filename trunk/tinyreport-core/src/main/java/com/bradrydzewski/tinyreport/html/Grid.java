@@ -96,8 +96,8 @@ public class Grid extends Element {
         table.setPrettyPrint(true);
 
         //add the style
-        if(style!=null)
-            table.setClass(style.getName());
+        if(styleName!=null)
+            table.setClass(styleName);
 
         table.setCellPadding(cellPadding);
         table.setCellSpacing(cellSpacing);
