@@ -21,15 +21,15 @@ public class Image extends Element {
         this.src = src;
     }
 
-    public Image(String src, Style style) {
+    public Image(String src, String style) {
         this.src = src;
-        this.setStyle(style);
+        this.setStyleName(style);
     }
 
-    public Image(String src, String mimeType, Style style) {
+    public Image(String src, String mimeType, String style) {
         this.src = src;
         this.mimeType = mimeType;
-        this.setStyle(style);
+        this.setStyleName(style);
     }
 
     public String getSrc() {
@@ -76,8 +76,8 @@ public class Image extends Element {
             img.setAlt(alt);
 
         //add the style
-        if(style!=null)
-            img.setClass(style.getName());
+        if(styleName!=null)
+            img.setClass(styleName);
 
         //if an embedded base64 image, add as source including mimetype
         if(embedded)

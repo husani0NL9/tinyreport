@@ -21,7 +21,7 @@ public class Table extends Grid {
     private List<GridRow> headerRows = new ArrayList<GridRow>();
     private List<GridRow> footerRows = new ArrayList<GridRow>();
     private List<DataGroup> dataGroups = new ArrayList<DataGroup>();
-    private DataQuery dataQuery;
+    private String dataQuery;
     private List<Filter> filters;
 
     public List<DataGroup> getDataGroups() {
@@ -48,11 +48,11 @@ public class Table extends Grid {
         this.headerRows = headerRows;
     }
 
-    public DataQuery getDataQuery() {
+    public String getDataQuery() {
         return dataQuery;
     }
 
-    public void setDataQuery(DataQuery dataQuery) {
+    public void setDataQuery(String dataQuery) {
         this.dataQuery = dataQuery;
     }
 
@@ -72,8 +72,8 @@ public class Table extends Grid {
         table.setPrettyPrint(true);
 
         //add the style
-        if (style != null) {
-            table.setClass(style.getName());
+        if (styleName != null) {
+            table.setClass(styleName);
         }
 
         //set table attributes
@@ -82,7 +82,7 @@ public class Table extends Grid {
         table.setBorder(border);
 
         //get the data set that the table is bound to, apply any filters
-        DataSet dataSet = args.getResults().get(dataQuery.getName());
+        DataSet dataSet = args.getResults().get(dataQuery);
         dataSet = DataSetUtil.getFilteredDataSet(dataSet, filters);
         //set data set in report builder args
         args.setCurrentDataSet(dataSet);

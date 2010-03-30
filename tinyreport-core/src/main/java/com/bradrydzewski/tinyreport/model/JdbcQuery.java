@@ -6,6 +6,7 @@ import com.bradrydzewski.tinyreport.jdbc.JdbcTemplate;
 import com.bradrydzewski.tinyreport.jdbc.PreparedStatementCreatorImpl;
 import com.bradrydzewski.tinyreport.jdbc.RowCallbackHandlerImpl;
 import com.bradrydzewski.tinyreport.util.DataTypeConversionUtil;
+import java.util.Map;
 import javax.sql.DataSource;
 
 /**
@@ -27,7 +28,7 @@ public class JdbcQuery extends DataQuery {
     }
 
     @Override
-    public DataSet execute(DataConnection dataConnection) {
+    public DataSet execute(DataConnection dataConnection, Map<String, Parameter> params) {
 
             //gets the jdbc connection stored in the ReportDefinition
             JdbcConnection conn = (JdbcConnection)dataConnection;
@@ -49,7 +50,8 @@ public class JdbcQuery extends DataQuery {
                 
                 //need to convert value to expected parameter type
                 Object reportParamValue = DataTypeConversionUtil
-                        .getCastedObjectToType(param.getType(),param.getValue());
+                        .getCastedObjectToType(param.getType(),
+                        params.get(param.getReportParameter()));
                 
                 //get the sql type to give to the prepared statement
                 int sqlType = DataTypeConversionUtil

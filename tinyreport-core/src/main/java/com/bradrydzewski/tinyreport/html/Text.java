@@ -60,8 +60,8 @@ public class Text extends Element {
         StringElement innerText = null;
 
         //set the style, if not null
-        if(style!=null)
-            div.setStyle(style.getValue());
+        if(styleName!=null)
+            div.setStyle(styleName);
 
         //if dynamic text, need to run script
         if(dynamic) {

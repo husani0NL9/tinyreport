@@ -66,7 +66,7 @@ public class ReportBuilderTest {
         dq.getColumns().add(dc3);
         dq.getColumns().add(dc4);
         dq.setName("ds1");
-        table.setDataQuery(dq);
+        table.setDataQuery(dq.getName());
         table.getHeaderRows().add(new GridRow().addCells(new GridCell(new Text("Id",false)), new GridCell(new Text("Name",false))) );
         table.getRows().add(new GridRow().addCells(new GridCell(new DataElement(dc1)), new GridCell(new DataElement(dc2))));
         rd.getPage().addChildElement(table);
