@@ -5,6 +5,9 @@ import com.bradrydzewski.tinyreport.jdbc.DataSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 
 /**
  * Abstract class representing a query of any data source, such as database,
@@ -12,12 +15,14 @@ import java.util.Map;
  * TODO: Remove JdbcParameter list since it is specific to the JdbcQuery impl.
  * @author Brad Rydzewski
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public abstract class DataQuery {
 
     /**
      * The name of the data query.
      * @serial
      */
+    @XmlAttribute
     private String name;
     /**
      * Columns in the data query result set.

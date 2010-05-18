@@ -1,9 +1,12 @@
 package com.bradrydzewski.tinyreport.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  *
  * @author Brad Rydzewski
  */
+@XmlRootElement
 public class JdbcConnection extends DataConnection {
 
     private String driverClass;

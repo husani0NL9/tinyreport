@@ -8,11 +8,13 @@ import com.bradrydzewski.tinyreport.jdbc.RowCallbackHandlerImpl;
 import com.bradrydzewski.tinyreport.util.DataTypeConversionUtil;
 import java.util.Map;
 import javax.sql.DataSource;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Brad Rydzewski
  */
+@XmlRootElement
 public class JdbcQuery extends DataQuery {
 
     

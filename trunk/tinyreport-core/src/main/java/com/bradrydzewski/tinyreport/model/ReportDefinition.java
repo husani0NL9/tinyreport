@@ -6,13 +6,18 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Defines a Report including data sources, parameters, output and formatting
  * @author Brad Rydzewski
  */
+@XmlRootElement
+//@XmlAccessorType(XmlAccessType.FIELD)
 public class ReportDefinition {
-
 
     private String name;
     private Date created = new Date();
@@ -24,7 +29,7 @@ public class ReportDefinition {
     private List<DataQuery> dataQueries = new ArrayList<DataQuery>();
     private List<ParameterGroup> parameters = new ArrayList<ParameterGroup>();
     private Page htmlWebPage = new Page();
-    private Map<String,String> properties = new HashMap<String,String>();
+    private Map<String, String> properties = new HashMap<String, String>();
 
     public Page getPage() {
         return htmlWebPage;
@@ -33,7 +38,7 @@ public class ReportDefinition {
     public void setPage(Page htmlDocument) {
         this.htmlWebPage = htmlDocument;
     }
-    
+
     public Date getCreated() {
         return created;
     }
@@ -42,6 +47,10 @@ public class ReportDefinition {
         this.created = created;
     }
 
+    @XmlElementWrapper
+    @XmlElementRefs({
+        @XmlElementRef(name="JdbcConnection", type = JdbcConnection.class)
+    })
     public List<DataConnection> getDataConnections() {
         return dataConnections;
     }
@@ -82,6 +91,10 @@ public class ReportDefinition {
         this.updated = updated;
     }
 
+    @XmlElementWrapper
+    @XmlElementRefs({
+        @XmlElementRef(name="JdbcQuery", type = JdbcQuery.class)
+    })
     public List<DataQuery> getDataQueries() {
         return dataQueries;
     }
