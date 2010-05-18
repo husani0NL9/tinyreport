@@ -3,6 +3,7 @@ package com.bradrydzewski.tinyreport.html;
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAttribute;
 import org.apache.ecs.xhtml.table;
 
 /**
@@ -12,8 +13,11 @@ import org.apache.ecs.xhtml.table;
 public class Grid extends Element {
 
     private List<GridRow> rows = new ArrayList<GridRow>();
+    @XmlAttribute
     protected int cellPadding = 0;
+    @XmlAttribute
     protected int cellSpacing = 0;
+    @XmlAttribute
     protected int border = 0;
 
     public int getCellPadding() {

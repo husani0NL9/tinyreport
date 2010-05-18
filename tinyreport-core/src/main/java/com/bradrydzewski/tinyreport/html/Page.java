@@ -3,6 +3,7 @@ package com.bradrydzewski.tinyreport.html;
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import org.apache.ecs.Document;
 import org.apache.ecs.html.Body;
 import org.apache.ecs.html.Head;
@@ -20,6 +21,7 @@ public class Page {
     private List<Style> styles = new ArrayList<Style>();
     private List<Element> childElements = new ArrayList<Element>();
 
+    @XmlElementWrapper
     public List<Style> getStyles() {
         return styles;
     }

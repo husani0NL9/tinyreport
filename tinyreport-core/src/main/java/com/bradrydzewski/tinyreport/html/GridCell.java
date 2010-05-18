@@ -1,16 +1,23 @@
 package com.bradrydzewski.tinyreport.html;
 
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import org.apache.ecs.xhtml.td;
 
 /**
  *
  * @author Brad Rydzewski
  */
+
 public class GridCell extends Element {
 
+    @XmlAttribute
     private int order;
+    @XmlAttribute
     private int columnSpan;
+    @XmlAttribute
     private int rowSpan;
     private Element child;
     

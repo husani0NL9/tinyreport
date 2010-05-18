@@ -48,12 +48,14 @@ public class ElementBuilderFactory {
             builder = tableBuilder;
         } else if (name.equals("label")) {
             builder = textBuilder;
+        } else if (name.equals("text")) {
+            builder = textBuilder;
         } else if (name.equals("data")) {
             builder = dataBuilder;
         } else if (name.equals("image")) {
             builder = imageBuilder;
         } else {
-            //System.out.println("unknown node: "+name);
+            System.out.println("unknown node: "+name);
         }
 
         return builder;

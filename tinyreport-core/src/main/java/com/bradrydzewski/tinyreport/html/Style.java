@@ -1,17 +1,20 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.bradrydzewski.tinyreport.html;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 
 /**
  *
- * @author Brad
+ * @author Brad Rydzewski
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Style {
 
+    @XmlAttribute
     private String name;
+    @XmlValue
     private String value;
 
     public String getName() {

@@ -1,25 +1,34 @@
 package com.bradrydzewski.tinyreport.model;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
+
 /**
  * Defines a column of data that will appear in a tabular data set.
  * @author Brad Rydzewski
  */
+@XmlAccessorType(XmlAccessType.FIELD)
 public class DataColumn {
 
     /**
      * The name of the array list.
      * @serial
      */
+    @XmlValue
     private String name;
     /**
      * The order of the column in a tabular data set.
      * @serial
      */
+    @XmlAttribute
     private int order;
     /**
      * The type of data.
      * @serial
      */
+    @XmlAttribute
     private DataType type;
 
     /**
