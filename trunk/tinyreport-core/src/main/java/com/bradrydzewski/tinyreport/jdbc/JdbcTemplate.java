@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -54,8 +55,9 @@ public class JdbcTemplate {
 
         Connection conn = null;
         ResultSet rs = null;
-        DataSet ds = new DataSet();
-        List result = ds.getRows();
+        DataSet ds = null;
+        List<Column> columns = new ArrayList<Column>();
+        List<Object[]> result = new ArrayList<Object[]>();
 
         try {
             conn = DataSourceUtils.getConnection(this.dataSource);
@@ -63,16 +65,20 @@ public class JdbcTemplate {
 
             rs = ps.executeQuery();
 
-            //ResultSetMetaData rsMetaData = rs.getMetaData();
-            //int columnCount = rsMetaData.getColumnCount();
+            ResultSetMetaData rsMetaData = rs.getMetaData();
+            int columnCount = rsMetaData.getColumnCount();
             
-            //for(int i=0;i<columnCount;i++){
-            //    
-            //}
+            for(int i=0;i<columnCount;i++){
+                columns.add(Column.fromResultSetMetaData(
+                        rsMetaData, i));
+            }
             
             while (rs.next()) {
                 result.add(callbackHandler.processRow(rs));
             }
+
+            ds = new DataSet(columns,result);
+
             rs.close();
             ps.close();
             

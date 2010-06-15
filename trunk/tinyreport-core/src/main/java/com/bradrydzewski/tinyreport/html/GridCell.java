@@ -4,13 +4,15 @@ import com.bradrydzewski.tinyreport.ReportBuilderArgs;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
 import org.apache.ecs.xhtml.td;
 
 /**
  *
  * @author Brad Rydzewski
  */
-
+@XmlAccessorType(XmlAccessType.FIELD)
 public class GridCell extends Element {
 
     @XmlAttribute
@@ -19,6 +21,13 @@ public class GridCell extends Element {
     private int columnSpan;
     @XmlAttribute
     private int rowSpan;
+    @XmlElementRefs({
+        @XmlElementRef(name="Image", type = Image.class),
+        @XmlElementRef(name="Grid", type = Grid.class),
+        @XmlElementRef(name="Table", type = Table.class),
+        @XmlElementRef(name="Text", type = Text.class),
+        @XmlElementRef(name="Data", type = DataElement.class)
+    })
     private Element child;
     
     public GridCell() {

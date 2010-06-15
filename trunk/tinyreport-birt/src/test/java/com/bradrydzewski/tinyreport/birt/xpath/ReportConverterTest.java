@@ -1,7 +1,6 @@
 package com.bradrydzewski.tinyreport.birt.xpath;
 
 import com.bradrydzewski.tinyreport.model.ReportDefinition;
-import com.bradrydzewski.tinyreport.model.ReportDefinition;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.StringWriter;
@@ -22,7 +21,7 @@ public class ReportConverterTest {
     public void testConvert_InputStream() {
 
         try {
-            File rptdesign = new File("src/test/resources/TopSellingProducts.rptdesign");
+            File rptdesign = new File("src/test/resources/TopNPercent.rptdesign"); //TopSellingProducts.rptdesign
             ReportDefinition rd = ReportConverter.convert(new FileInputStream(rptdesign));
 
             //String reportDefStr = ReportSerializationUtil.toXMLString(rd);

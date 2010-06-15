@@ -7,6 +7,8 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import org.apache.ecs.StringElement;
 import org.apache.ecs.xhtml.div;
 
@@ -14,20 +16,25 @@ import org.apache.ecs.xhtml.div;
  *
  * @author Brad Rydzewski
  */
+@XmlRootElement
 public class DataElement extends Element {
 
     private String script;
-    private String column;
-    private DataColumn value;
+
+    private DataType dataType = DataType.STRING;
+    private String columnName;
     private boolean dynamic = false;
     private String numberFormat = "";
     private String dateFormat = "";
+    @XmlTransient private boolean initialized;
+    @XmlTransient private int columnIndex;
 
     public DataElement() {
     }
 
-    public DataElement(DataColumn value) {
-        this.value = value;
+    public DataElement(String columnName, DataType dataType) {
+        this.columnName = columnName;
+        this.dataType = dataType;
     }
 
     public DataElement(String script) {
@@ -51,14 +58,6 @@ public class DataElement extends Element {
         this.script = script;
     }
 
-    public DataColumn getValue() {
-        return value;
-    }
-
-    public void setValue(DataColumn value) {
-        this.value = value;
-    }
-
     public String getDateFormat() {
         return dateFormat;
     }
@@ -76,15 +75,23 @@ public class DataElement extends Element {
     }
 
     public String getColumn() {
-        return column;
+        return columnName;
     }
 
     public void setColumn(String column) {
-        this.column = column;
+        this.columnName = column;
+    }
+
+    public void init(ReportBuilderArgs args) {
+        initialized = true;
+        this.columnIndex = args.getCurrentDataSet().getColumnIndex(columnName);
     }
 
     @Override
     public void build(org.apache.ecs.Element parent, ReportBuilderArgs args) {
+
+        if(!initialized)
+            init(args);
 
         //create the div to hold the text
         div div = new div();
@@ -104,7 +111,7 @@ public class DataElement extends Element {
         //else just get the bound column value
         } else {
             innerText = new StringElement(getBoundValue(
-                    args.getCurrentDataRow()[getValue().getOrder()]));
+                    args.getCurrentDataRow()[columnIndex]));
         }
 
         //ensure text has pretty print
@@ -162,10 +169,10 @@ public class DataElement extends Element {
      * @return
      */
     boolean assertDateCell() {
-        if (getValue() == null) {
-            return false;
-        }
-        return getValue().getType() == DataType.DATE;
+//        if (getValue() == null) {
+//            return false;
+//        }
+        return dataType == DataType.DATE;
     }
 
     /**
@@ -174,11 +181,8 @@ public class DataElement extends Element {
      * @return
      */
     boolean assertNumberCell() {
-        if (getValue() == null) {
-            return false;
-        }
 
-        switch (getValue().getType()) {
+        switch (dataType) {
             case DOUBLE:
             case FLOAT:
             case INTEGER:

@@ -22,6 +22,6 @@ public interface RowCallbackHandler {
      *         information as a Java object
      * @throws SQLException If a database low-level error occurrs
      */
-    public Object processRow(ResultSet rs) throws SQLException;
+    public Object[] processRow(ResultSet rs) throws SQLException;
 
 }

@@ -1,6 +1,7 @@
 package com.bradrydzewski.tinyreport.html;
 
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.ecs.StringElement;
 import org.apache.ecs.xhtml.div;
 
@@ -8,6 +9,7 @@ import org.apache.ecs.xhtml.div;
  *
  * @author Brad
  */
+@XmlRootElement
 public class Text extends Element {
 
     private String value;
@@ -26,6 +28,10 @@ public class Text extends Element {
 
     public String getValue() {
         return value;
+    }
+
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public void setValue(String value, boolean dynamic) {

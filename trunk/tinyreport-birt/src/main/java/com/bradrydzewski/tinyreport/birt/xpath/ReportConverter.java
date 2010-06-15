@@ -71,6 +71,9 @@ public class ReportConverter {
                 if(builder!=null) {
                     reportDefinition.getPage().addChildElement(
                             builder.getElement(elementObject));
+                    System.out.println("getting elem of type "+elementObject.getName());
+                } else {
+                    System.out.println("unable to find builder for type "+elementObject.getName());
                 }
             }
 

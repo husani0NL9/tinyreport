@@ -1,12 +1,15 @@
 package com.bradrydzewski.tinyreport.html;
 
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.ecs.xhtml.img;
 
 /**
  * Represents an Image element, corresponding to the {@code <image>} tag
  * @author Brad Rydzewski
  */
+@XmlRootElement
 public class Image extends Element {
 
     private String src;
@@ -48,6 +51,7 @@ public class Image extends Element {
         this.alt = alt;
     }
 
+    @XmlAttribute
     public String getMimeType() {
         return mimeType;
     }
@@ -56,6 +60,7 @@ public class Image extends Element {
         this.mimeType = mimeType;
     }
 
+    @XmlAttribute
     public boolean isEmbedded() {
         return embedded;
     }
