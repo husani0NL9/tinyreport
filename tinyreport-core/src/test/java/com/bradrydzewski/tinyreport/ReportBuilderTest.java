@@ -9,6 +9,7 @@ import com.bradrydzewski.tinyreport.html.Image;
 import com.bradrydzewski.tinyreport.html.Page;
 import com.bradrydzewski.tinyreport.html.Table;
 import com.bradrydzewski.tinyreport.html.Text;
+import com.bradrydzewski.tinyreport.jdbc.Column;
 import com.bradrydzewski.tinyreport.jdbc.DataSet;
 import com.bradrydzewski.tinyreport.model.DataColumn;
 import com.bradrydzewski.tinyreport.model.DataType;
@@ -43,7 +44,7 @@ public class ReportBuilderTest {
                 new GridCell(new Image("http://www.foo.com/image4.jpg")));
         rd.getPage().addChildElement(g);
 
-        DataSet ds = new DataSet();
+        
         DataColumn dc1 = new DataColumn("id",0,DataType.INTEGER);
         DataColumn dc2 = new DataColumn("name",1,DataType.STRING);
         DataColumn dc3 = new DataColumn("hourly rate",2,DataType.INTEGER);
@@ -55,7 +56,12 @@ public class ReportBuilderTest {
         rows.add(new Object[]{2,"John",75,"CT"});
         rows.add(new Object[]{3,"Bill",99,"PA"});
         rows.add(new Object[]{4,"Ron",99,"AZ"});
-        ds.setRows(rows);
+        List columns = new ArrayList();
+        columns.add(new Column("id",0,java.sql.Types.INTEGER));
+        columns.add(new Column("name",1,java.sql.Types.VARCHAR));
+        columns.add(new Column("hourly rate",2,java.sql.Types.INTEGER));
+        columns.add(new Column("state",3,java.sql.Types.VARCHAR));
+        DataSet ds = new DataSet(columns,rows);
         Map dsTbl = new HashMap<String, DataSet>();
         dsTbl.put("ds1", ds);
 
@@ -68,12 +74,12 @@ public class ReportBuilderTest {
         dq.setName("ds1");
         table.setDataQuery(dq.getName());
         table.getHeaderRows().add(new GridRow().addCells(new GridCell(new Text("Id",false)), new GridCell(new Text("Name",false))) );
-        table.getRows().add(new GridRow().addCells(new GridCell(new DataElement(dc1)), new GridCell(new DataElement(dc2))));
+        table.getRows().add(new GridRow().addCells(new GridCell(new DataElement(dc1.getName(),dc1.getType())), new GridCell(new DataElement(dc2.getName(),dc2.getType()))));
         rd.getPage().addChildElement(table);
 
         DataGroup dg = new DataGroup();
         dg.setDataColumn(dc4);
-        dg.getHeaderRows().add(new GridRow().addCells(new GridCell(new DataElement(dc4))));
+        dg.getHeaderRows().add(new GridRow().addCells(new GridCell(new DataElement(dc4.getName(),dc4.getType()))));
         dg.setOrder(1);
         table.getDataGroups().add(dg);
 

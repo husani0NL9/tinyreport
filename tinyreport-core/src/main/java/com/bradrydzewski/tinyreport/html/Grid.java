@@ -3,22 +3,27 @@ package com.bradrydzewski.tinyreport.html;
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.ecs.xhtml.table;
 
 /**
  * Represents a simple HTML table, containing a set of Rows
  * @author Brad Rydzewski
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Grid extends Element {
 
     private List<GridRow> rows = new ArrayList<GridRow>();
     @XmlAttribute
-    protected int cellPadding = 0;
+    private int cellPadding = 0;
     @XmlAttribute
-    protected int cellSpacing = 0;
+    private int cellSpacing = 0;
     @XmlAttribute
-    protected int border = 0;
+    private int border = 0;
 
     public int getCellPadding() {
         return cellPadding;

@@ -96,4 +96,15 @@ public class ReportBuilderArgs {
         return parameters;
     }
 
+    /**
+     * Get's the Column value for the current data row.
+     * @return
+     */
+    public Object getValue(String column) {
+        return this.getValue(currentDataSet.getColumnIndex(column));
+    }
+
+    public Object getValue(int index) {
+        return currentDataRow[index];
+    }
 }

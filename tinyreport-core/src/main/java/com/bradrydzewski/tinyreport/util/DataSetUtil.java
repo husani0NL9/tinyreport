@@ -23,9 +23,6 @@ public class DataSetUtil {
         }
         
         //create new data set to hold filtered data
-        DataSet filteredDataSet = new DataSet();
-        filteredDataSet.setColumnNames(ds.getColumnNames());
-        filteredDataSet.setColumnTypes(ds.getColumnTypes());
         List rows = new ArrayList();
         
         for(Object o : ds.getRows()) {
@@ -45,9 +42,7 @@ public class DataSetUtil {
                 rows.add(row);
         }
             
-        //add rows to dataSet
-        filteredDataSet.setRows(rows);
-        
-        return filteredDataSet;
+        //create the new filtered dataSet
+        return new DataSet(ds.getColumns(),rows);
     }
 }

@@ -3,6 +3,8 @@ package com.bradrydzewski.tinyreport.html;
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlElementRef;
+import javax.xml.bind.annotation.XmlElementRefs;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import org.apache.ecs.Document;
 import org.apache.ecs.html.Body;
@@ -38,6 +40,12 @@ public class Page {
         return this;
     }
 
+    @XmlElementRefs({
+        @XmlElementRef(name="Image", type = Image.class),
+        @XmlElementRef(name="Grid", type = Grid.class),
+        @XmlElementRef(name="Table", type = Table.class),
+        @XmlElementRef(name="Text", type = Text.class)
+    })
     public List<Element> getChildElements() {
         return childElements;
     }

@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class RowCallbackHandlerImpl implements RowCallbackHandler {
 
 
-    public Object processRow(ResultSet rs) throws SQLException {
+    public Object[] processRow(ResultSet rs) throws SQLException {
         
         int columnCount = rs.getMetaData().getColumnCount();
         Object[] row = new Object[columnCount];

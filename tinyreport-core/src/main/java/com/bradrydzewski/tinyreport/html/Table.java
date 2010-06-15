@@ -3,10 +3,12 @@ package com.bradrydzewski.tinyreport.html;
 import com.bradrydzewski.tinyreport.ReportBuilderArgs;
 import com.bradrydzewski.tinyreport.filter.Filter;
 import com.bradrydzewski.tinyreport.jdbc.DataSet;
-import com.bradrydzewski.tinyreport.model.DataQuery;
 import com.bradrydzewski.tinyreport.util.DataSetUtil;
 import java.util.ArrayList;
 import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import org.apache.ecs.xhtml.table;
 import org.apache.ecs.xhtml.tbody;
 import org.apache.ecs.xhtml.tfoot;
@@ -16,6 +18,8 @@ import org.apache.ecs.xhtml.thead;
  *
  * @author Brad
  */
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Table extends Grid {
 
     private List<GridRow> headerRows = new ArrayList<GridRow>();
@@ -77,9 +81,9 @@ public class Table extends Grid {
         }
 
         //set table attributes
-        table.setCellPadding(cellPadding);
-        table.setCellSpacing(cellSpacing);
-        table.setBorder(border);
+        table.setCellPadding(this.getCellPadding());
+        table.setCellSpacing(this.getCellSpacing());
+        table.setBorder(this.getBorder());
 
         //get the data set that the table is bound to, apply any filters
         DataSet dataSet = args.getResults().get(dataQuery);

@@ -21,7 +21,10 @@ public class PageBuilder {
                     .get().getBuilder(object);
             if(builder!=null) {
                 Element element = builder.getElement(object);
+                System.out.println("adding element of type "+element.getClass().getCanonicalName());
                 page.getChildElements().add(element);
+            } else {
+                System.out.println("Null builder returned for child element of page");
             }
         }
 
